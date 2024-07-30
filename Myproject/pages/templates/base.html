@@ -1,0 +1,310 @@
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>kenya power company </title>
+  <meta content="mugoma" name="description">
+  <meta content="mugoma" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{%static 'assets/img/kplc.png'%}" rel="icon">
+  <link href="{%static 'assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/aos/aos.css'%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{%static 'assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{%static 'assets/css/main.css'%}" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+  
+  <header style="" id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{%static 'assets/img/kplc.png'%}" alt=""> 
+        <!--<h1 class="sitename">KPLC</h1> <span>.</span> -->
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          {%if user.is_authenticated%}
+          <li><a href="#get-started">Dashboard</a></li>
+          <li><a href="#">Anouncement</a></li>
+          <li><a href="{%url 'logout_user'%}">logout</a></li>
+          {%else%}
+          <li><a href="{%url 'landing_page'%}" class="active">Home</a></li>
+          <li><a href="/admin">Login as Admin</a></li>
+          {%endif%}
+        </ul> 
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+  
+
+  <main class="main">
+   
+    <section style="background-color: rgb(36, 7, 117);" class="hero" class="hero section">
+      {%if user.is_authenticated%}
+      <h1 > Summary reports of staff and announcements area</h1>
+      {%else%}
+      <div class="info d-flex align-items-center">
+        <div class="container">
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6 text-center">
+             
+              <h2 class="">Welcome to Kenya power and lighting company</h2>
+              <p>At Kenya Power, we are dedicated to delivering reliable, affordable, and sustainable electricity to homes and businesses across Kenya. Our goal is to empower communities, drive economic growth, and enhance the quality of life through innovative energy solutions.</p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="section-fqREP4OWmC-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item">
+          <img src="{%static 'assets/img/hero-carousel/hero-carousel-1.jpg'%}" alt="">
+        </div>
+
+        <div class="carousel-item active">
+          <img src="{%static 'assets/img/hero-carousel/hero-carousel-2.jpg'%}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{%static 'assets/img/hero-carousel/hero-carousel-3.jpg'%}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{%static 'assets/img/hero-carousel/hero-carousel-4.jpg'%}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{%static 'assets/img/hero-carousel/hero-carousel-5.jpg'%}" alt="">
+        </div>
+
+        <a class="carousel-control-prev" href="#section-fqREP4OWmC-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#section-fqREP4OWmC-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+      {%endif%}
+    </section><!-- /Hero Section -->
+  
+    <!-- Get Started Section -->
+    <section id="get-started" class="get-started section">
+
+      <div class="container">
+        {%block content%}
+
+
+        {%endblock%}
+
+        <div class="row justify-content-between gy-4">
+          {%if user.is_authenticated%}
+<h1>Welcome, {{ user.username }}</h1>
+<h3>Your Performance Score</h3>
+<p>Your current task completion score is: <strong>{{ score }}%</strong></p>
+
+<a href="{% url 'generate_pdf' user.id %}" class="btn btn-primary">Download Weekly Report</a>
+<h3>Your Daily Tasks</h3>
+<table class="table table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th>Description</th>
+    <th>Deadline</th>
+    <th>Completed</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task.description }}</td>
+    <td>{{ task.deadline }}</td>
+    <td>{{ task.is_completed }}</td>
+    <td>
+      {% if not task.is_completed %}
+      <form method="post" action="{% url 'complete_task' task.id %}">
+        {% csrf_token %}
+        <button  class="btn btn-success" type="submit">Mark as Completed</button>
+      </form>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{%else%}
+
+          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+            <div class="content">
+              <h3>Login to the Evaluation Management System at KPLC.</h3>
+              <p>This platform is designed to streamline and enhance the evaluation processes within our organization. It allows staff to efficiently manage assessments, track progress, and ensure accountability.
+              </p>
+              <p>Please sign in with your credentials to access the system. Your participation is crucial in maintaining our commitment to excellence and continuous improvement.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
+            <form action="{%url 'home'%}" method="post" class="container">
+              {% csrf_token %}
+              <h3>Login here </h3>
+              <p>Kindly ,Ensure youre a legitimate user within the organization.</p>
+              <div class="row gy-3">
+
+                <div class="col-md-12">
+                  <label for="username"> Username</label>
+                  <input type="text" name="username" class="form-control" placeholder="username" required="">
+                </div>
+
+                <div class="col-md-12 ">
+                  <label for="Password"> password</label>
+                  <input type="password" class="form-control" name="password" placeholder="password" required="">
+                </div>
+                  <button type="submit" class="btn btn-primary">login as staff</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+          {%endif%}
+        </div>
+
+      </div>
+
+    </section>
+
+
+  
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Engage with us</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Around daraja streets</p>
+            <p>kisii,Kenya</p>
+            <p class="mt-3"><strong>Dial *977# </strong> or<span>+254203201000</span></p>
+            <p><strong>Email:</strong> <span>customercare@kplc.co.ke</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Hic solutasetp</h4>
+          <ul>
+            <li><a href="#">Molestiae accusamus iure</a></li>
+            <li><a href="#">Excepturi dignissimos</a></li>
+            <li><a href="#">Suscipit distinctio</a></li>
+            <li><a href="#">Dilecta</a></li>
+            <li><a href="#">Sit quas consectetur</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Nobis illum</h4>
+          <ul>
+            <li><a href="#">Ipsam</a></li>
+            <li><a href="#">Laudantium dolorum</a></li>
+            <li><a href="#">Dinera</a></li>
+            <li><a href="#">Trodelas</a></li>
+            <li><a href="#">Flexo</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">KPLC</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="#">ICT TEAM </a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{%static 'assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{%static 'assets/js/main.js'%}"></script>
+
+</body>
+
+</html>
+

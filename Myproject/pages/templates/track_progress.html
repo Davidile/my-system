@@ -1,0 +1,27 @@
+<!-- track_progress.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Track Progress</h2>
+  <a href="{% url 'generate_pdf' %}" class="btn btn-primary">Download PDF</a>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Department</th>
+        <th>Total Score (%)</th>
+        <th>Review Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+        <tr>
+          <td>{{ review.user.username }}</td>
+          <td>{{ review.department.name }}</td>
+          <td>{{ review.calculate_total_score }}</td>
+          <td>{{ review.review_date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!-- templates/pdf_template.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Performance</title>
+    <style>
+    @page {
+        size: A4;
+        margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+        @top-center {
+            content: "KPLC STAFF PERFORMANCE RANKING FORM IN PDF FORMAT";
+        }
+        @bottom-right {
+            content: "Page " counter(page) " of " counter(pages);
+        }
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .logo {
+        width: 150px; /* Set the width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    h1 {
+        text-align: center;
+        color: green;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{% static 'assets/img/kplc.png' %}" alt="KPLC Logo" class="logo">
+    </div>
+    <h1>Weekly Performance Report for {{ user.username }}</h1>
+    <p>From {{ start_of_week }} to {{ today }}</p>
+    <h3>Tasks</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Completion Date</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.description }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.completion_date }}</td>
+                <td>{{ task.is_completed }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Score: {{ score_percentage }}%</h3>
+</body>
+</html>
